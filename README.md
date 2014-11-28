@@ -7,6 +7,34 @@ ConvertApi is an online file conversion service for creating PDF and Images from
 
 Development of this library is not in any way connected with Baltsoft Software.
 
+Installation via [Composer](http://getcomposer.org/)
+-----
+
+ * Install Composer to your project root:
+    ```bash
+    curl -sS https://getcomposer.org/installer | php
+    ```
+
+ * Add a `composer.json` file to your project:
+    ```json
+    {
+        "repositories": [
+            {
+                "url": "https://github.com/knyga/convertapi-php",
+                "type": "git"
+            }
+        ],
+        "require": {
+            "confuzzledduck/convertapi-php": "dev-master"
+        }
+    }
+    ```
+
+ * Run the Composer installer:
+    ```bash
+    php composer.phar install
+    ```
+
 Using
 -----
 
