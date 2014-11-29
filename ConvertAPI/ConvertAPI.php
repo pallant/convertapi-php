@@ -75,10 +75,10 @@ abstract class ConvertAPI {
   *
   * @param string $inputFilename Full path of file to convert.
   * @param string $outputFilename Full path of file to write with converted document.
+  * @param array $postFields Basic post options for api request.
   */
-	public function convert($inputFilename, $outputFilename = null) {
-	
-	 // Check input file (if it's an array of local file extensions)...
+	public function convert($inputFilename, $outputFilename = null, $postFields = array()) {
+	 	// Check input file (if it's an array of local file extensions)...
 		$urlInput = false;
 		if (is_array($this->_validInputFormats)) {
 			$inputFilenameChunks = explode('.', $inputFilename);
@@ -99,16 +99,16 @@ abstract class ConvertAPI {
 			throw new \Exception('Invalid input format identifier.');
 		}
 
-	 // Check output file...
+	 	// Check output file...
 		if ($outputFilename !== null) {
 			if (!((file_exists($outputFilename) && is_writable($outputFilename)) || is_writable(dirname($outputFilename)))) {
 				throw new \Exception('Output file target is not writable.');
 			}
 		}
 
-	 // Do conversion...
+		// Do conversion...
 		try {
-			$convertResponse = $this->_apiRequest($inputFilename, $urlInput);
+			$convertResponse = $this->_apiRequest($inputFilename, $urlInput, $postFields);
 			if ($outputFilename !== null) {
 				if (file_put_contents($outputFilename, $convertResponse['document'])) {
 					unset($convertResponse['document']);
@@ -131,25 +131,23 @@ abstract class ConvertAPI {
   * Send a request to the API.
   *
   * @param string $filename Full path of file to convert.
+  * @param array $postFields Basic post options for api request.
   * @return array Array containing request details and binary data. See above.
   */
-	protected function _apiRequest($filename, $urlInput = false) {
-	
-
+	protected function _apiRequest($filename, $urlInput = false, $postFields = array()) {
 		if (function_exists('curl_init')) {
-		
-	 // Set the source filename or URL...
+	 		// Set the source filename or URL...
 			if ($urlInput == true) {
-				$postFields = array('CUrl' => $filename);
+				$postFields['CUrl'] = $filename;
 			} else {
 				if (is_readable($filename)) {
-					$postFields = array('File' => new \CurlFile($filename));
+					$postFields['File'] = new \CurlFile($filename);
 				} else {
 					throw new \Exception('File does not exist or is not readable.');
 				}
 			}
 
-	 // Build the rest of the post fields array...
+	 			// Build the rest of the post fields array...
 				if ($this->apiKey !== null) {
 					$postFields['ApiKey'] = $this->apiKey;
 				}
@@ -161,7 +159,7 @@ abstract class ConvertAPI {
 					}
 				}
 
-	 // Carry out the cURL request...
+	 			// Carry out the cURL request...
 				$curlHandle = curl_init();
 				curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($curlHandle, CURLOPT_POST, true);
@@ -170,10 +168,10 @@ abstract class ConvertAPI {
 				curl_setopt($curlHandle, CURLOPT_HEADER, true);
 				$curlReturn = curl_exec($curlHandle);
 
-	 // Split the response into headers and body (usually document)...
+	 			// Split the response into headers and body (usually document)...
 				$curlReturnArray = explode("\r\n\r\n", $curlReturn);
 
-	 // Check headers and return the document...
+	 			// Check headers and return the document...
 				$headers = explode("\r\n", $curlReturnArray[1]);
 				if ($headers[0] == 'HTTP/1.1 200 OK') {
 					$returnArray = array('document' => $curlReturnArray[2]);
