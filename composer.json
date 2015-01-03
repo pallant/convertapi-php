@@ -1,13 +1,17 @@
 {
-    "name": "confuzzledduck/convertapi-php",
+    "name": "knyga/convertapi-php",
     "type": "application",
     "description": "PHP library for the convertapi.com REST API.",
     "keywords": ["convertapi", "curl", "knyga", "confuzzledduck"],
-    "homepage": "https://github.com/confuzzledduck/convertapi-php",
+    "homepage": "https://github.com/knyga/convertapi-php",
     "license": "GNU",
     "authors": [
         {
             "name": "ConfuzzledDuck"
+        },
+        {
+            "name": "Oleksandr Knyga",
+            "email": "oleksandrknyga@gmail.com"
         }
     ],
     "minimum-stability": "stable",
