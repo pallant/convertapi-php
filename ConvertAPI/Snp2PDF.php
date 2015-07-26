@@ -12,10 +12,12 @@ require_once('Abstract2PDF.php');
   */
 class Snp2Pdf extends Abstract2Pdf {
 
+    protected $_https = true;
+
  /**
   * URL of the appropriate convertapi.com API.
   */
-	protected $_apiUrl = 'http://do.convertapi.com/Snp2Pdf';
+	protected $_apiUrl = '//do.convertapi.com/Snp2Pdf';
 
  /**
   * An array of valid input file formats for this conversion. Overrides the

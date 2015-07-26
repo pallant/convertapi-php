@@ -61,7 +61,14 @@ abstract class ConvertAPI {
 		if (!isset($this->_apiUrl)) {
 			throw new \Exception('Child classes of ConvertAPI must specify a value for $this->_apiUrl.');
 		}
-	
+
+		if (!isset($this->_https)) {
+			throw new \Exception('Child classes of ConvertAPI must specify a value for $this->_https.');
+		}
+
+		$schema = $this->_https ? 'https:' : 'http:';
+		$this->_apiUrl = $schema . $this->_apiUrl;
+
 		if ($apiKey != null) {
 			$this->apiKey = $apiKey;
 		}
