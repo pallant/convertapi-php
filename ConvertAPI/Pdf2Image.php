@@ -12,10 +12,12 @@ require_once('Abstract2Image.php');
   */
 class Pdf2Image extends Abstract2Image {
 
+    protected $_https = true;
+
  /**
   * URL of the appropriate convertapi.com API.
   */
-	protected $_apiUrl = 'http://do.convertapi.com/Pdf2Image';
+	protected $_apiUrl = '//do.convertapi.com/Pdf2Image';
 
  /**
   * An array of valid input file formats for this conversion. Overrides the

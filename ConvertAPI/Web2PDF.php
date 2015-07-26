@@ -12,10 +12,12 @@ require_once('Abstract2PDF.php');
   */
 class Web2Pdf extends Abstract2Pdf {
 
+    protected $_https = true;
+
  /**
   * URL of the appropriate convertapi.com API.
   */
-	protected $_apiUrl = 'http://do.convertapi.com/Web2Pdf';
+	protected $_apiUrl = '//do.convertapi.com/Web2Pdf';
 
  /**
   * An string indicating that the valid input format is a URL for this

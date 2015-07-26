@@ -12,10 +12,12 @@ require_once('Abstract2PowerPoint.php');
   */
 class Pdf2PowerPoint extends Abstract2PowerPoint {
 
+    protected $_https = true;
+
  /**
   * URL of the appropriate convertapi.com API.
   */
-	protected $_apiUrl = 'http://do.convertapi.com/Pdf2PowerPoint';
+	protected $_apiUrl = '//do.convertapi.com/Pdf2PowerPoint';
 
  /**
   * An array of valid input file formats for this conversion. Overrides the

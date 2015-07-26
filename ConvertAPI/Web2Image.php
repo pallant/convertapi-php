@@ -12,10 +12,12 @@ require_once('Abstract2Image.php');
   */
 class Web2Image extends Abstract2Image {
 
+    protected $_https = true;
+
  /**
   * URL of the appropriate convertapi.com API.
   */
-	protected $_apiUrl = 'http://do.convertapi.com/Web2Image';
+	protected $_apiUrl = '//do.convertapi.com/Web2Image';
 
  /**
   * A string indicating that the valid input format is a URL for this
