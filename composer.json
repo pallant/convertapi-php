@@ -1,9 +1,9 @@
 {
-    "name": "knyga/convertapi-php",
+    "name": "pallant/convertapi-php",
     "type": "application",
     "description": "PHP library for the convertapi.com REST API.",
     "keywords": ["convertapi", "curl", "knyga", "confuzzledduck"],
-    "homepage": "https://github.com/knyga/convertapi-php",
+    "homepage": "https://github.com/pallant/convertapi-php",
     "license": "GNU",
     "authors": [
         {
