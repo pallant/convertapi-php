@@ -12,7 +12,7 @@ require_once('Abstract2PowerPoint.php');
   */
 class Pdf2PowerPoint extends Abstract2PowerPoint {
 
-    protected $_https = true;
+    protected $_https = false;
 
  /**
   * URL of the appropriate convertapi.com API.
